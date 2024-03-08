@@ -1,8 +1,16 @@
 version: '3'
 services:
   nginx:
+    restart: always
     build:
       context: .
       dockerfile: requirements/nginx/Dockerfile
     ports:
       - "443:443"   
+  mariadb:
+    restart: always
+    build:
+      context: .
+      dockerfile: requirements/mariadb/Dockerfile
+    ports:
+     - "3306"
