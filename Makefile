@@ -14,4 +14,4 @@ logs:
 	sudo docker-compose -f srcs/docker-compose.yml logs
 top:
 	sudo docker-compose -f srcs/docker-compose.yml top
-
+re:	down clean up logs
