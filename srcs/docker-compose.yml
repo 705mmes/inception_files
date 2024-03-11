@@ -14,3 +14,12 @@ services:
       dockerfile: requirements/mariadb/Dockerfile
     ports:
      - "3306"
+    env_file:
+      .env
+  wordpress:
+    restart: always
+    build:
+      context: .
+      dockerfile: requirements/wordpress/Dockerfile
+    depends_on:
+     - mariadb
