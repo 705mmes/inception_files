@@ -1,5 +1,5 @@
 up:
-	sudo docker compose -f srcs/docker-compose.yml up -d
+	sudo docker-compose --env-file srcs/.env -f srcs/docker-compose.yml up -d
 restart:
 	sudo docker-compose -f srcs/docker-compose.yml restart
 stop:

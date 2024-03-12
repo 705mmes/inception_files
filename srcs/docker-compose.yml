@@ -1,25 +1,67 @@
 version: '3'
 services:
+
   nginx:
-    restart: always
+    container_name: nginx
+    volumes:
+     - wordpress_vol:/var/wwww/wordpres
+    networks:
+      - inception
+    depends_on:
+     - wordpress
+    restart: on-failure
     build:
       context: .
       dockerfile: requirements/nginx/Dockerfile
+    env_file: .env
     ports:
       - "443:443"   
+
   mariadb:
-    restart: always
+    container_name: mariadb
+    volumes:
+     - mariadb_vol:/var/lib/mysql
+    networks:
+      - inception
+    restart: unless-stopped
     build:
       context: .
       dockerfile: requirements/mariadb/Dockerfile
-    ports:
+    expose:
      - "3306"
     env_file:
       .env
+
   wordpress:
-    restart: always
+    container_name: wordpress
+    volumes:
+     - wordpress_vol:/var/wwww/wordpress
+    env_file: .env
+    networks:
+      - inception
+    restart: on-failure
     build:
       context: .
       dockerfile: requirements/wordpress/Dockerfile
     depends_on:
      - mariadb
+    expose:
+     - "9000"
+
+volumes:
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/smunio/inception_vol/wordpress'
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/smunio/inception_vol/mariadb'
+
+networks:
+  inception:
+    driver: bridge
