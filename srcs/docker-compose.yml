@@ -4,7 +4,7 @@ services:
   nginx:
     container_name: nginx
     volumes:
-     - wordpress_vol:/var/wwww/wordpres
+     - wordpress_vol:/var/www/wordpres
     networks:
       - inception
     depends_on:
@@ -35,7 +35,7 @@ services:
   wordpress:
     container_name: wordpress
     volumes:
-     - wordpress_vol:/var/wwww/wordpress
+     - wordpress_vol:/var/www/wordpress
     env_file: .env
     networks:
       - inception
