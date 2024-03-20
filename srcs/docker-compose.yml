@@ -4,7 +4,7 @@ services:
   nginx:
     container_name: nginx
     volumes:
-     - wordpress_vol:/var/www/wordpres
+     - wordpress_vol:/var/www/wordpress
     networks:
       - inception
     depends_on:
@@ -29,8 +29,7 @@ services:
       dockerfile: requirements/mariadb/Dockerfile
     expose:
      - "3306"
-    env_file:
-      .env
+    env_file: .env
 
   wordpress:
     container_name: wordpress

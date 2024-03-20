@@ -6,6 +6,6 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/ngin
 #RUN mkdir -p /var/run/nginx
 #RUN chown -R www-data:www-data /var/www/html
 COPY ./requirements/nginx/conf/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 443
+EXPOSE 443/tcp
 
 CMD ["nginx", "-g", "daemon off;"]
