@@ -17,4 +17,4 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /run/php
-CMD /usr/sbin/php-fpm7.4 -F && ./wp_script.sh
+CMD ./wp_script.sh && /usr/sbin/php-fpm7.4 -F
