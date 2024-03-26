@@ -1,9 +1,12 @@
-up:
+create:
 	mkdir ../inception_vol
 	mkdir ../inception_vol/mariadb
 	mkdir ../inception_vol/wordpress
 	sudo docker-compose --env-file srcs/.env -f srcs/docker-compose.yml up -d --build
 
+up:
+	sudo docker-compose --env-file srcs/.env -f srcs/docker-compose.yml up -d --build
+	
 restart:
 	sudo docker-compose -f srcs/docker-compose.yml restart
 

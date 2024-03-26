@@ -17,4 +17,4 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /run/php
-CMD ./wp_script.sh && /usr/sbin/php-fpm7.4 -F
+CMD if test -e /var/www/wordpress/wp-config.php; then /usr/sbin/php-fpm7.4 -F; else ./wp_script.sh && /usr/sbin/php-fpm7.4 -F; fi

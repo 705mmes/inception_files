@@ -5,14 +5,7 @@ sed -i "s/localhost/mariadb:3306/g" /var/www/wordpress/wp-config-sample.php
 cd /var/www/wordpress/
 cp wp-config-sample.php wp-config.php
 
-#rm -f /var/www/wordpress/wp-config.php
-sleep 1
-#wp config create	--allow-root \
-#				--dbname=$SQL_DATABASE \
-#				--dbuser=$SQL_USER \
-#				--dbpass=$SQL_PASSWORD \
- #     			--dbhost=mariadb:3306 --path='/var/www/wordpress' \
-  #              --config-file='/var/www/wordpress'
+sleep 4
 
 wp core install --allow-root \
                 --url="smunio.42.fr" \
@@ -21,3 +14,4 @@ wp core install --allow-root \
                 --admin_password=$WP_PASS1 \
                 --admin_email="admin@mail.com" \
                 --skip-email
+wp user create $WP_USER2 "user2@mail.com" --user_pass=$WP_PASS2 --allow-root
